@@ -66,6 +66,12 @@ def data_func():
     # Return results in JSON format
     return jsonify(wine_df.to_dict(orient="records"))
 
+# Map route
+@app.route("/map")
+def map_func():
+    return render_template("map.html")
+    app.add_url_rule('/', 'map_func', map_func)
+    
 
 if __name__ == "__main__":
     # app.run() without arguments for Heroku deployment
