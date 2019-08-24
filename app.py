@@ -33,6 +33,11 @@ Base.prepare(db.engine, reflect=True)
 # Rename table for reference
 Wine = Base.classes.wine_table
 
+# Home route
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 # Route to the data
 @app.route("/data")
 def data_func():
@@ -60,3 +65,10 @@ def data_func():
 
     # Return results in JSON format
     return jsonify(wine_df.to_dict(orient="records"))
+
+
+if __name__ == "__main__":
+    # app.run() without arguments for Heroku deployment
+    # app.run()
+    # app.run() with arguments for local dev
+    app.run(debug=True, port=8000, host="localhost", threaded=True)
