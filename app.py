@@ -71,6 +71,24 @@ def data_func():
 def map_func():
     return render_template("map.html")
     app.add_url_rule('/', 'map_func', map_func)
+
+# Route to get access the countries, points and price for the leaflet part
+@app.route("/country")
+def country_func():
+
+    sel = [
+        Wine.country,
+        Wine.points,
+        Wine.price,
+    ]    
+    
+    country_results = db.session.query(*sel).all()
+
+    # Getting the data into Pandas df
+    country_df = pd.DataFrame(country_results, columns=["country", "points", "price"])
+
+    # Return the resuts in JSON format
+    return jsonify(country_df.to_dict(orient="records"))
     
 
 if __name__ == "__main__":
