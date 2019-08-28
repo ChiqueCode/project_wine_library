@@ -1,23 +1,21 @@
-// sort the data by countries 
-// find the average point for each country
-// average price for each country
+// Creating map object
+var myMap = L.map("map", {
+  center: [40.7128, -74.0059],
+  zoom: 11
+});
+
+// Adding tile layer
+L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.streets",
+  accessToken: API_KEY
+}).addTo(myMap);
 
 // Grab the data with d3
 var url = "/country";
 
 d3.json(url, { crossOrigin: "anonymous" }).then(function(response) {
-  // console.log(response);
+  console.log(response);
 });
 
-// countryArray = [];
-// create a for loop if the country[i] = country[i+1], then create an object "country": "countryName", and key "points": "points" => += sum
-// countryArray.push(country[i])
-// and price += sum
-
-// avgArray = [];
-// for loop for countries and sums of price and points
-// for country in countryArray:
-// function for avg points and price
-// var avgPrice = sumPrice / country[i].length;
-
-// Percentage instead of averages? 
