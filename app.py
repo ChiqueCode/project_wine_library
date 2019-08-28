@@ -32,6 +32,7 @@ Base.prepare(db.engine, reflect=True)
 
 # Rename table for reference
 Wine = Base.classes.wine_table
+Map_wine = Base.classes.map_wine_table
 
 # Home route
 @app.route("/")
@@ -77,9 +78,9 @@ def map_func():
 def country_func():
 
     sel = [
-        Wine.country,
-        Wine.points,
-        Wine.price,
+        Map_wine.country,
+        Map_wine.points,
+        Map_wine.price,
     ]    
     
     country_results = db.session.query(*sel).all()
@@ -89,7 +90,7 @@ def country_func():
 
     # Return the resuts in JSON format
     return jsonify(country_df.to_dict(orient="records"))
-    
+
 
 if __name__ == "__main__":
     # app.run() without arguments for Heroku deployment
