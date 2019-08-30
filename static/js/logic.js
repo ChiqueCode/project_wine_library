@@ -15,7 +15,14 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 // Grab the data with d3
 var url = "/country";
 
+var geojson;
+
 d3.json(url, { crossOrigin: "anonymous" }).then(function(response) {
   console.log(response);
+
+  // Create a new choropleth layer
+  geojson = L.choropleth(response, {
+
+  })
 });
 
