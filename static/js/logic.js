@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
   center: [40.7128, -74.0059],
-  zoom: 11
+  zoom: 2.5
 });
 
 // Adding tile layer
@@ -13,16 +13,16 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 // Grab the data with d3
-var url = "/country";
 
 var geojson;
 
-d3.json(url, { crossOrigin: "anonymous" }).then(function(response) {
-  console.log(response);
+d3.json("static/js/wine.json").then(function(data) {
+  L.geoJson(data).addTo(myMap);
+  // console.log(data);
+
 
   // Create a new choropleth layer
-  geojson = L.choropleth(response, {
-
-  })
+  // geojson = L.choropleth(data, {   
+  // })
 });
 
