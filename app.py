@@ -81,12 +81,14 @@ def country_func():
         Map_wine.country,
         Map_wine.points,
         Map_wine.price,
+        Map_wine.lat,
+        Map_wine.lon
     ]    
     
     country_results = db.session.query(*sel).all()
 
     # Getting the data into Pandas df
-    country_df = pd.DataFrame(country_results, columns=["country", "points", "price"])
+    country_df = pd.DataFrame(country_results, columns=["country", "points", "price", "lat", "lon"])
 
     # Return the resuts in JSON format
     return jsonify(country_df.to_dict(orient="records"))
