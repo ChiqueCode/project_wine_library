@@ -12,9 +12,19 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: API_KEY
 }).addTo(myMap);
 
+// var geojsonLayer = new L.GeoJSON.AJAX("geojson.json");
+
+// var geojsonLayer = L.geoJson.ajax("static/js/wine.json",{
+//   middleware:function(data){
+//       return esri2geoOrSomething(json);
+//   }
+// });
+
+
+
 // Grab the data with d3
 
-var geojson;
+// var geojson;
 
 d3.json("static/js/wine.json").then(function(data) {
   L.geoJson(data).addTo(myMap);
