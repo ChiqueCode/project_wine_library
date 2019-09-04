@@ -62,7 +62,7 @@ def data_func():
 
     # Creating Pandas DataFrame
     wine_df = pd.DataFrame(wine_results, columns=[
-                                 "country", "description", "points", "price", "province", "region_1", "region_2", "variety", "winery"])
+        "country", "description", "points", "price", "province", "region_1", "region_2", "variety", "winery"])
 
     # Return results in JSON format
     return jsonify(wine_df.to_dict(orient="records"))
@@ -83,15 +83,21 @@ def country_func():
         Map_wine.price,
         Map_wine.lat,
         Map_wine.lon
-    ]    
-    
+    ]
+
     country_results = db.session.query(*sel).all()
 
     # Getting the data into Pandas df
-    country_df = pd.DataFrame(country_results, columns=["country", "points", "price", "lat", "lon"])
+    country_df = pd.DataFrame(country_results, columns=[
+                              "country", "points", "price", "lat", "lon"])
 
     # Return the resuts in JSON format
     return jsonify(country_df.to_dict(orient="records"))
+
+
+# @app.route("/winery")
+# def winery_func():
+
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ L.tileLayer(
 var geojson;
 
 // Grab the data with d3
-d3.json("static/js/top_five.json").then(function(data) {
+d3.json("static/js/wine_polygon.json").then(function(data) {
 
   L.geoJson(data).addTo(myMap);
   // console.log(data);
@@ -57,14 +57,14 @@ d3.json("static/js/top_five.json").then(function(data) {
     }
   }).addTo(myMap);
 
-  var wineIcon = L.icon({
-    iconUrl: '../images/noun_wine.png',
+  // var wineIcon = L.icon({
+  //   iconUrl: 'static/images/noun_wine.png',
   
-    iconSize:     [38, 95], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-  });
+  //   iconSize:     [38, 95], // size of the icon
+  //   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+  //   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  // });
 
-  L.marker([51.5, -0.09], {icon: wineIcon}).addTo(myMap);
+  // L.marker([51.5, -0.09], {icon: wineIcon}).addTo(myMap);
 
 });
