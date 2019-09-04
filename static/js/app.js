@@ -1,3 +1,14 @@
-// d3.json("static/js/wine.json").then(function(data) {
-//     console.log(data);
-//   });
+// Plotly chart for reviews 
+function reviewsChart() {
+    reviewsURL = "/reviews";
+
+    d3.json(reviewsURL).then(function(data) {
+      var data = [data];
+      var layout = {
+        title: "Reviews count per Country"
+      };
+      Plotly.plot("ReviewsCount", data, layout);
+    });
+  }
+
+  reviewsChart();

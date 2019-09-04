@@ -95,9 +95,39 @@ def country_func():
     return jsonify(country_df.to_dict(orient="records"))
 
 
-# @app.route("/winery")
-# def winery_func():
+@app.route("/reviews")
+def winery_func():
+    sel = [Wine.country, func.count(Wine.description)]
 
+    reviews_results = db.session.query(*sel).\
+        group_by(Wine.country).\
+        order_by(func.count(Wine.description).desc()).\
+        limit(5).all()
+
+    reviews_df = pd.DataFrame(reviews_results, columns=[
+                              "Country", "Reviews Count"])
+
+    # Format the data for Plotly
+    reviews_data = {
+        "x": reviews_df["Country"].values.tolist(),
+        "y": reviews_df["Reviews Count"].values.tolist(),
+        "type": "bar",
+        "textfont": {
+            "family": "\"Noto Sans SC\", sans-serif",
+                "color": "#F2F2F2"
+        },
+        "hoverlabel": {
+            "bgcolor": "#393E40",
+            "font": {
+                "family": "\"Noto Sans SC\", sans-serif",
+                "color": "#F2F2F2"
+            }
+        },
+        "marker": {
+            "color": "#5A8C7A"
+        }
+    }
+    return jsonify(reviews_data)
 
 
 if __name__ == "__main__":
