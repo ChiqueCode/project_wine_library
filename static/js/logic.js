@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
-  center: [40.7128, -74.0059],
-  zoom: 2.5
+  center: [52.7954791, -0.5402403],
+  zoom: 4
 });
 
 // Adding tile layer
@@ -11,16 +11,18 @@ L.tileLayer(
     attribution:
       'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: "mapbox.streets",
+    id: "mapbox.light",
     accessToken: API_KEY
   }
 ).addTo(myMap);
 
+
 var geojson;
 
 // Grab the data with d3
-d3.json("static/js/wine.json").then(function(data) {
-  // L.geoJson(data).addTo(myMap);
+d3.json("static/js/top_five.json").then(function(data) {
+
+  L.geoJson(data).addTo(myMap);
   // console.log(data);
   // Create a new choropleth layer
   geojson = L.choropleth(data, {
@@ -54,5 +56,15 @@ d3.json("static/js/wine.json").then(function(data) {
       );
     }
   }).addTo(myMap);
+
+  var wineIcon = L.icon({
+    iconUrl: '../images/noun_wine.png',
+  
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
+
+  L.marker([51.5, -0.09], {icon: wineIcon}).addTo(myMap);
 
 });
