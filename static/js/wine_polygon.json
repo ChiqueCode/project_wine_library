@@ -15692,22 +15692,6 @@
           ]
         ]
       }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "country": "Germany",
-        "points": 88.6105666808692,
-        "price": 39.011077971879
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          10.4234469,
-          51.0834196
-        ]
-      }
     }
   ]
 }
-

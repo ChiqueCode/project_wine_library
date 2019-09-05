@@ -20,14 +20,14 @@ L.tileLayer(
 var geojson;
 
 // Grab the data with d3
-d3.json("static/js/wine_polygon.json").then(function(data) {
+d3.json("static/js/germany.json").then(function(data) {
 
   L.geoJson(data).addTo(myMap);
   // console.log(data);
   // Create a new choropleth layer
   geojson = L.choropleth(data, {
     // Define what  property in the features to use
-    valueProperty: "points",
+    valueProperty: "polygon",
 
     // Set color scale
     scale: ["#ffffb2", "#b10026"],
@@ -57,14 +57,43 @@ d3.json("static/js/wine_polygon.json").then(function(data) {
     }
   }).addTo(myMap);
 
-  // var wineIcon = L.icon({
-  //   iconUrl: 'static/images/noun_wine.png',
-  
-  //   iconSize:     [38, 95], // size of the icon
-  //   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-  //   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-  // });
-
-  // L.marker([51.5, -0.09], {icon: wineIcon}).addTo(myMap);
-
 });
+
+// Grab the data with d3
+d3.json("static/js/wine_polygon.json").then(function(data) {
+
+  L.geoJson(data).addTo(myMap);
+  // console.log(data);
+  // Create a new choropleth layer
+  geojson = L.choropleth(data, {
+    // Define what  property in the features to use
+    valueProperty: "polygon",
+
+    // Set color scale
+    scale: ["#ffffb2", "#b10026"],
+
+    // Number of breaks in step range
+    steps: 10,
+
+    // q for quartile, e for equidistant, k for k-means
+    mode: "q",
+    style: {
+      // Border color
+      color: "#fff",
+      weight: 1,
+      fillOpacity: 0.8
+    },
+
+    // Binding a pop-up to each layer
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup(
+        feature.properties.country +
+          ", " +
+          feature.properties.points+
+          "<br>Median Price per bottle of wine:<br>" +
+          "$" +
+          feature.properties.price
+      );
+    }
+  }).addTo(myMap);
+});  
