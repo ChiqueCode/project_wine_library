@@ -8,7 +8,10 @@ from flask import (
     Flask,
     render_template,
     request,
-    jsonify)
+    jsonify,
+    make_response)
+
+from json import dumps
 
 # Sqlite
 import sqlalchemy
@@ -18,6 +21,7 @@ from sqlalchemy import create_engine
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+
 
 # Set up Flask
 app = Flask(__name__)
@@ -92,9 +96,16 @@ def country_func():
                               "country", "points", "price", "lat", "lon"])
 
     # Return the resuts in JSON format
-    # return jsonify(country_df.to_dict(orient="records"))
-    final_list = country_df.values.tolist()
-    return final_list
+    return jsonify(country_df.to_dict(orient="records"))
+
+
+@app.route('/d3')
+def return_a_json_array():
+
+    # Crafting my array
+    an_array_because_i_want_to = ['array', 'of', 'strings']
+    return make_response(dumps(an_array_because_i_want_to))    
+
 
 
 
