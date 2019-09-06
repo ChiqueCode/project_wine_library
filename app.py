@@ -37,6 +37,7 @@ Base.prepare(db.engine, reflect=True)
 # Rename table for reference
 Wine = Base.classes.wine_table
 Map_wine = Base.classes.map_wine_table
+D3 = Base.classes.D3_table
 
 # Home route
 @app.route("/")
@@ -65,7 +66,7 @@ def data_func():
     wine_results = db.session.query(*sel).all()
 
     # Creating Pandas DataFrame
-    wine_df = pd.DataFrame(wine_results, columns=[
+    wine_df = pd.DataFrame(wine_results, columns = [
         "country", "description", "points", "price", "province", "region_1", "region_2", "variety", "winery"])
 
     # Return results in JSON format
@@ -92,7 +93,7 @@ def country_func():
     country_results = db.session.query(*sel).all()
 
     # Getting the data into Pandas df
-    country_df = pd.DataFrame(country_results, columns=[
+    country_df = pd.DataFrame(country_results, columns = [
                               "country", "points", "price", "lat", "lon"])
 
     # Return the resuts in JSON format
@@ -102,11 +103,20 @@ def country_func():
 @app.route('/d3')
 def return_a_json_array():
 
+    sel = [
+        D3.country,
+        D3.price,
+        D3.quality
+    ]
+
+    d3_results = db.session.query(*sel).all()
+    d3_df = pd.DataFrame(d3_results, columns = [
+                              "country", "price", "quality"])
+
     # Crafting my array
-    an_array_because_i_want_to = ['array', 'of', 'strings']
-    return make_response(dumps(an_array_because_i_want_to))    
+    final_d3_list = d3_df.values.tolist()
 
-
+    return make_response(dumps(final_d3_list))    
 
 
 @app.route("/reviews")
