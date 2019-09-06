@@ -1,16 +1,11 @@
-// source: CIA World FactBook: https://www.cia.gov/library/publications/the-world-factbook/rankorder/rankorderguide.html
-
 const dataset = [
-    ["US",78.5,85],
-    ["France",77,90],
-    ["Italy",73.4,93],
-    ["US",178.5,85],
-    ["France",177,87],
-    ["Italy",73.4,80],
-  ];
+    ["US", 235, 96], ["Spain", 110, 96], ["US", 90, 96], ["US", 65, 96], ["France", 66, 95], ["Spain", 73, 95], ["Spain", 65, 95], ["Spain", 110, 95], ["US", 65, 95]
+];
 
-// const dataset = [
-// ];
+// var url = "/d3";
+// d3.json(url, function(dataset) {
+//   console.log(dataset);
+// });
 
 // Constracting an SVG element
 const width = 1000;
@@ -45,8 +40,8 @@ const xScale = d3
   .domain([minGini, maxGini])
   .range([padding, width - padding]);
 
-// And GDp is x axis values, d[2] is a third value in a list which is going to be the quality 
-const maxGDP = d3.max(dataset, d => d[2]); 
+// And GDp is x axis values, d[2] is a third value in a list which is going to be the quality
+const maxGDP = d3.max(dataset, d => d[2]);
 const minGDP = d3.min(dataset, d => d[2]);
 console.log(maxGDP);
 
@@ -54,7 +49,7 @@ const rScale = d3
   .scaleLinear()
   .domain([minGDP, maxGDP])
 
-// .range is the size of the circle  
+  // .range is the size of the circle
   .range([5, 25]);
 
 const xAxis = d3.axisBottom(xScale);
@@ -63,7 +58,7 @@ const yAxis = d3.axisLeft(yScale);
 const tip = d3
   .tip()
   .attr("class", "d3-tip")
-// .offset is for the bindpopup distance from a circle
+  // .offset is for the bindpopup distance from a circle
   .offset([-10, 0])
   .html(d => {
     return (
@@ -71,8 +66,8 @@ const tip = d3
       d[0] +
       "</div><div class='tip-gdp'>Price per bottle of Wine:<br>" +
       formatCurrency(d[1]) +
-    //   "<br><div class='tip-gdp'>Life Expectancy: " +
-    //   d[1] +
+      //   "<br><div class='tip-gdp'>Life Expectancy: " +
+      //   d[1] +
       "</div><div class='tip-gdp'>Quality of Wine: " +
       d[2] +
       "</div>"
@@ -100,7 +95,7 @@ svg
   .attr("cy", d => yScale(d[1]))
   .attr("r", d => rScale(d[2]))
 
-// This is where the circle get filled based on country  
+  // This is where the circle get filled based on country
   .attr("fill", d => color(d[0])) // was d[4] before for continent
   .attr("id", d => d[0])
   .attr("class", d => `circle ${d[0]}`) // was d[4] before for continent
@@ -112,7 +107,7 @@ svg
   })
   .on("mouseout", tip.hide);
 
-// TODO: Break down the code below 
+// TODO: Break down the code below
 
 svg
   .append("g")
@@ -123,13 +118,19 @@ svg
 svg
   .append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", "translate(" + padding / 2 + "," + height / 2 + ")rotate(-90)")
-  .text("Life Expectancy at Birth (in years)");
+  .attr(
+    "transform",
+    "translate(" + padding / 2 + "," + height / 2 + ")rotate(-90)"
+  )
+  .text("Price per Bottle of Wine");
 
 svg
   .append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", "translate(" + width / 2 + "," + (height - padding / 3) + ")")
+  .attr(
+    "transform",
+    "translate(" + width / 2 + "," + (height - padding / 3) + ")"
+  )
   .text("Quality of Wine");
 
 svg

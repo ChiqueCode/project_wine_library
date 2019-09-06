@@ -12,3 +12,9 @@
 //   }
 
 //   reviewsChart();
+
+// var url = "/d3";
+
+// d3.json(url, function(data) {
+//   console.log(data);
+// });
