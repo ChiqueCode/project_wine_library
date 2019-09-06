@@ -1,7 +1,16 @@
 // source: CIA World FactBook: https://www.cia.gov/library/publications/the-world-factbook/rankorder/rankorderguide.html
 
 const dataset = [
-];
+    ["US",78.5,85],
+    ["France",77,90],
+    ["Italy",73.4,93],
+    ["US",178.5,85],
+    ["France",177,87],
+    ["Italy",73.4,80],
+  ];
+
+// const dataset = [
+// ];
 
 // Constracting an SVG element
 const width = 1000;
@@ -16,21 +25,20 @@ const legendSpacing = 8;
 // currency save in const with dollars formatting
 const formatCurrency = d3.format("$,");
 
-// Min and max for y axis 
+// Min and max for y axis for Price values
 const maxLE = d3.max(dataset, d => d[1]);
-// console.log(maxLE);
 const minLE = d3.min(dataset, d => d[1]);
-// console.log(minLE);
-
+// console.log(minLE); //50
 
 const yScale = d3
   .scaleLinear()
   .domain([minLE, maxLE])
   .range([height - padding, marginTop]);
 
-// Where Gini is x axis numbers   
-const maxGini = d3.max(dataset, d => d[3]);
-const minGini = d3.min(dataset, d => d[3]);
+// Where Gini is x axis numbers for Quality values
+const maxGini = d3.max(dataset, d => d[2]); // was d[3]
+const minGini = d3.min(dataset, d => d[2]); // was d[3]
+// console.log(maxGini); //13k
 
 const xScale = d3
   .scaleLinear()
@@ -38,8 +46,9 @@ const xScale = d3
   .range([padding, width - padding]);
 
 // And GDp is x axis values, d[2] is a third value in a list which is going to be the quality 
-const maxGDP = d3.max(dataset, d => d[2]);
+const maxGDP = d3.max(dataset, d => d[2]); 
 const minGDP = d3.min(dataset, d => d[2]);
+console.log(maxGDP);
 
 const rScale = d3
   .scaleLinear()
@@ -61,11 +70,11 @@ const tip = d3
       "<div class='tip-name'>" +
       d[0] +
       "</div><div class='tip-gdp'>Price per bottle of Wine:<br>" +
-      formatCurrency(d[2]) +
+      formatCurrency(d[1]) +
     //   "<br><div class='tip-gdp'>Life Expectancy: " +
     //   d[1] +
       "</div><div class='tip-gdp'>Quality of Wine: " +
-      d[3] +
+      d[2] +
       "</div>"
     );
   });
@@ -87,7 +96,7 @@ svg
   .data(dataset)
   .enter()
   .append("circle")
-  .attr("cx", d => xScale(d[3]))
+  .attr("cx", d => xScale(d[2]))
   .attr("cy", d => yScale(d[1]))
   .attr("r", d => rScale(d[2]))
 
