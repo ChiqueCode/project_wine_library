@@ -92,7 +92,10 @@ def country_func():
                               "country", "points", "price", "lat", "lon"])
 
     # Return the resuts in JSON format
-    return jsonify(country_df.to_dict(orient="records"))
+    # return jsonify(country_df.to_dict(orient="records"))
+    final_list = country_df.values.tolist()
+    return final_list
+
 
 
 @app.route("/reviews")
