@@ -1,11 +1,14 @@
-const dataset = [
-    ["US", 235, 96], ["Spain", 110, 96], ["US", 90, 96], ["US", 65, 96], ["France", 66, 95], ["Spain", 73, 95], ["Spain", 65, 95], ["Spain", 110, 95], ["US", 65, 95]
-];
-
-// var url = "/d3";
-// d3.json(url, function(dataset) {
-//   console.log(dataset);
-// });
+// const dataset = [
+//   ["US", 235, 96],
+//   ["Spain", 110, 96],
+//   ["US", 90, 96],
+//   ["US", 65, 96],
+//   ["France", 66, 95],
+//   ["Spain", 73, 95],
+//   ["Spain", 65, 95],
+//   ["Spain", 110, 95],
+//   ["US", 65, 95]
+// ];
 
 // Constracting an SVG element
 const width = 1000;
@@ -20,34 +23,45 @@ const legendSpacing = 8;
 // currency save in const with dollars formatting
 const formatCurrency = d3.format("$,");
 
+// var url = "/d3";
+// d3.json(url, function(dataset) {
+  //   console.log(dataset);
+
 // Min and max for y axis for Price values
 const maxLE = d3.max(dataset, d => d[1]);
 const minLE = d3.min(dataset, d => d[1]);
 // console.log(minLE); //50
 
+
+
+// minLE, maxLE => minPrice, maxPrice
+// maxGini, minGini => maxQuality, minQuality
+// max, min GDP => Quality
+
+
 const yScale = d3
   .scaleLinear()
-  .domain([minLE, maxLE])
+  .domain([minPrice, maxPrice])
   .range([height - padding, marginTop]);
 
 // Where Gini is x axis numbers for Quality values
-const maxGini = d3.max(dataset, d => d[2]); // was d[3]
-const minGini = d3.min(dataset, d => d[2]); // was d[3]
+const maxQuality = d3.max(dataset, d => d[2]); // was d[3]
+const minQuality = d3.min(dataset, d => d[2]); // was d[3]
 // console.log(maxGini); //13k
 
 const xScale = d3
   .scaleLinear()
-  .domain([minGini, maxGini])
+  .domain([minQuality, maxQuality])
   .range([padding, width - padding]);
 
 // And GDp is x axis values, d[2] is a third value in a list which is going to be the quality
-const maxGDP = d3.max(dataset, d => d[2]);
-const minGDP = d3.min(dataset, d => d[2]);
+const maxQuality = d3.max(dataset, d => d[2]);
+const minQuality = d3.min(dataset, d => d[2]);
 console.log(maxGDP);
 
 const rScale = d3
   .scaleLinear()
-  .domain([minGDP, maxGDP])
+  .domain([minQuality, maxQuality])
 
   // .range is the size of the circle
   .range([5, 25]);
@@ -156,13 +170,13 @@ const legend = svg
   })
   .on("click", d => {
     const allCircles = Array.from(document.getElementsByClassName("circle"));
-    const otherContinents = allCircles.filter(el => !el.classList.contains(d));
-    const continentMatches = Array.from(document.getElementsByClassName(d));
-    otherContinents.forEach(el => {
+    const otherCountries = allCircles.filter(el => !el.classList.contains(d));
+    const countryMatches = Array.from(document.getElementsByClassName(d));
+    otherCountries.forEach(el => {
       el.classList.remove("visible");
       el.classList.add("hidden");
     });
-    continentMatches.forEach(el => {
+    countryMatches.forEach(el => {
       el.classList.remove("hidden");
       el.classList.add("visible");
     });

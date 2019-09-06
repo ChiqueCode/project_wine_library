@@ -157,5 +157,5 @@ def winery_func():
 if __name__ == "__main__":
     # app.run() without arguments for Heroku deployment
     # app.run()
-    # app.run() with arguments for local dev
     app.run(debug=True, port=8000, host="localhost", threaded=True)
+
