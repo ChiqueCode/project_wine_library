@@ -12,8 +12,9 @@ const dataset = [
 
 var url = "/d3";
 
-d3.json(url, function(dataset) {
+// d3.json(url, function(dataset) {
 //   console.log(dataset);
+// })
 
   // Constracting an SVG element
   const width = 1000;
@@ -195,5 +196,5 @@ d3.json(url, function(dataset) {
     document.getElementById("btn").classList.add("btn-hide");
     document.getElementById("btn").classList.remove("btn-show");
   };
-});
+
 // document.getElementById("btn").addEventListener("click", showAll);
