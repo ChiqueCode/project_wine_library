@@ -39,7 +39,7 @@ d3.json("static/js/wine_polygon.json").then(function(data) {
     mode: "q",
     style: {
       // Border color
-      color: "#fff",
+      color: "#202040",
       weight: 1,
       fillOpacity: 0.8
     },
@@ -48,9 +48,9 @@ d3.json("static/js/wine_polygon.json").then(function(data) {
     onEachFeature: function(feature, layer) {
       layer.bindPopup(
         feature.properties.country +
-          ", " +
-          feature.properties.points+
-          "<br>Median Price per bottle of wine:<br>" +
+          "<br>Quality of Wine: " +
+          feature.properties.points+ " points" +
+          "<br>Price per bottle of Wine: " +
           "$" +
           feature.properties.price
       );
@@ -58,42 +58,3 @@ d3.json("static/js/wine_polygon.json").then(function(data) {
   }).addTo(myMap);
 
 });
-
-// Grab the data with d3
-d3.json("static/js/france.json").then(function(data) {
-
-  L.geoJson(data).addTo(myMap);
-  // console.log(data);
-  // Create a new choropleth layer
-  geojson = L.choropleth(data, {
-    // Define what  property in the features to use
-    valueProperty: "polygon",
-
-    // Set color scale
-    scale: ["#ffffb2", "#b10026"],
-
-    // Number of breaks in step range
-    steps: 10,
-
-    // q for quartile, e for equidistant, k for k-means
-    mode: "q",
-    style: {
-      // Border color
-      color: "#fff",
-      weight: 1,
-      fillOpacity: 0.8
-    },
-
-    // Binding a pop-up to each layer
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup(
-        feature.properties.country +
-          ", " +
-          feature.properties.points+
-          "<br>Median Price per bottle of wine:<br>" +
-          "$" +
-          feature.properties.price
-      );
-    }
-  }).addTo(myMap);
-});  

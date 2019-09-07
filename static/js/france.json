@@ -4,7 +4,9 @@
         {
             "type": "Feature",
             "properties": {
-                "cca2": "fr"
+                "country": "France",
+                "points": 89,
+                "price": 46
             },
             "geometry": {
                 "type": "MultiPolygon",

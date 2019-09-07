@@ -5,8 +5,8 @@
       "type": "Feature",
       "properties": {
         "country": "England",
-        "points": 92.75,
-        "price": 47.5
+        "points": 93,
+        "price": 47
       },
       "geometry": {
         "type": "Polygon",
@@ -13578,8 +13578,8 @@
       "type": "Feature",
       "properties": {
         "country": "Austria",
-        "points": 89.19089810712848,
-        "price": 31.192106322996377
+        "points": 89,
+        "price": 31
       },
       "geometry": {
         "type": "Polygon",
