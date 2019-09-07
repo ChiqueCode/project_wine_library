@@ -20,7 +20,7 @@ L.tileLayer(
 var geojson;
 
 // Grab the data with d3
-d3.json("static/js/germany.json").then(function(data) {
+d3.json("static/js/wine_polygon.json").then(function(data) {
 
   L.geoJson(data).addTo(myMap);
   // console.log(data);
@@ -60,7 +60,7 @@ d3.json("static/js/germany.json").then(function(data) {
 });
 
 // Grab the data with d3
-d3.json("static/js/italy.json").then(function(data) {
+d3.json("static/js/france.json").then(function(data) {
 
   L.geoJson(data).addTo(myMap);
   // console.log(data);
