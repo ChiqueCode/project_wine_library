@@ -6,18 +6,22 @@ var myMap = L.map("map", {
   zoom: 4
 });
 
-L.tileLayer(
-  'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
+L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
   accessToken: API_KEY
 }).addTo(myMap);
+
+// Turning off Zoom on the map
+myMap.scrollWheelZoom.disable();
+myMap.on('focus', () => { myMap.scrollWheelZoom.enable(); });
+myMap.on('blur', () => { myMap.scrollWheelZoom.disable(); });
 
 var geojson;
 
 // Grab the data with d3
 d3.json("static/js/wine_polygon.json").then(function(data) {
-
   L.geoJson(data).addTo(myMap);
 
   // Create a new choropleth layer
@@ -39,12 +43,12 @@ d3.json("static/js/wine_polygon.json").then(function(data) {
       layer.bindPopup(
         feature.properties.country +
           "<br>Quality of Wine: " +
-          feature.properties.points+ " points" +
+          feature.properties.points +
+          " points" +
           "<br>Price per bottle of Wine: " +
           "$" +
           feature.properties.price
       );
     }
   }).addTo(myMap);
-
 });
