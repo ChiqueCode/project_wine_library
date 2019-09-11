@@ -1,6 +1,7 @@
 /* https://www.pexels.com/search/Wine/ */
 
 /* Pallette https://colorhunt.co/palette/152246 */
+/* https://colorhunt.co/palette/156756 */
 
 /* Leaflet maps styles */
 
@@ -12,12 +13,45 @@
 
 /* style.css */
 
+/* Navigation */
+
+.top-bar {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.top-bar .menu-text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 900;
+}
+
+.top-bar,
+.top-bar ul {
+  background-color: #420000;
+  color: #f2f2f2;
+}
+
+.top-bar ul a {
+  color: #f2f2f2;
+}
+.top-bar ul a:hover,
+.top-bar ul a:focus {
+  color: #5a8c7a;
+}
+
+#banner {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: middle;
-	font-family: 'Titillium Web', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  color: #11010e;
+  background-color: #f6f6f6;
 }
 
 .chart {
@@ -147,4 +181,9 @@ circle {
 .btn-show {
   opacity: 1;
   height: auto;
+}
+
+footer {
+  background-color: #420000;
+  color: black;
 }
