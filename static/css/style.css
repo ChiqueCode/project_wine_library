@@ -54,6 +54,20 @@ body {
   background-color: #f6f6f6;
 }
 
+/* Sections */
+
+#header {
+  margin-top: 20px;
+}
+
+#heading {
+  font-size: 80px;
+}
+
+#sub-heading {
+  font-size: 60px;
+}
+
 .chart {
 	border: 1px solid gray;
 	margin: auto;
@@ -111,18 +125,6 @@ body {
   margin: -1px 0 0 0;
   top: 100%;
   left: 0;
-}
-
-.legend {
-  font-size: 12px;
-}
-
-.legend:hover circle {
-  cursor: pointer;
-  opacity: .5;
-  -webkit-box-shadow: 0px 0px 10px 2px lime;
-  -moz-box-shadow: 0px 0px 10px 2px lime;
-  box-shadow: 0px 0px 10px 2px lime;
 }
 
 circle {
@@ -183,7 +185,71 @@ circle {
   height: auto;
 }
 
+.wine_history {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.top_wines_container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.prices_quality_container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/* Wines Section */
+.stats-container {
+  background: linear-gradient(hsla(53, 80%, 79%, 0.45), hsla(53, 80%, 79%, 0.45)), url("../images/interlaced.png");
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  color: hsl(53, 80%, 15%);
+  margin-bottom: 100px;
+  margin-top: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.stats-cell {
+  position: relative;
+  padding: 100px;
+}
+
+@media print,
+screen and (min-width: 40em) {
+  .stats-cell {
+      padding: 60px;
+  }
+}
+
+.stats-cell p {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.stats-cell::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  bottom: auto;
+  left: auto;
+  z-index: 0;
+  height: 20rem;
+  width: 20rem;
+  background: #fff3f7;
+  border-radius: 50%;
+  -webkit-transform: translate(50%, -50%);
+  transform: translate(50%, -50%);
+  opacity: 0.6;
+}
+
 footer {
   background-color: #420000;
   color: black;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }

@@ -1203,6 +1203,9 @@ var url = "/d3";
 //   console.log(dataset);
 // })
 
+  // var svg = d3
+  //  .select("chart")
+
   // Constracting an SVG element
   const width = 700;
   const height = 500;

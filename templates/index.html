@@ -105,7 +105,7 @@
       </div>
     </div>
 
-    <div class="wine_history">
+    <div class="prices_quality_container">
         <div class="grid-container">
           <div class="grid-x grid-padding-x grid-padding-y text-center">
             <section class="cell large-12 text-center">
@@ -116,27 +116,55 @@
                 Prices vs Quality correlation. In order to see the correlation between prices and quality of wine in different countries, simply click on the country you are interested in.
               </p>
             </section>  
+
+<!-- D3 chart here, scripts have to be in this specific order -->
+            <section class="cell medium-12 large-12 text-center">
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+            <script type="text/javascript" src="static/js/config.js"></script>
+            <script type="text/javascript" src="static/js/logic.js"></script>
+            <script type="text/javascript" src="../static/js/app.js"></script>
+            <script src="../static/js/d3.tip.js"></script>
+            <script src="../static/js/script.js"></script>
+            </section>
             </div>
           </div>
         </div>
 
+
+<!-- Best wineries + wines stats and info -->
+  <div class="top_wines_container">
+      <div class="grid-container">
+        <div class="grid-x align-center align-middle">
+                      <section class="cell large-12 text-center">
+              <h3>Three Top Wines</h3>
+            </section>
+            <section class="cell medium-12 large-12 text-center">
+              <p>
+                Below are the best wines NARRATIVE 
+              </p>
+            </section>  
+          <div class="cell large-4 medium-4 text-center stats-cell">
+            <p>
+                ('Sloan', 'US', 'California', 'Cabernet Blend', 100.0, 245.0)
+            </p>
+          </div>
+  
+          <div class="cell large-4 medium-4 text-center stats-cell">
+            <p>
+                Mascarello Giuseppe e Figlio' 'Italy', 'Piedmont', 'Nebbiolo', 99.0, 175.0
+            </p>
+          </div>
+          <div class="cell large-4 medium-4 text-center stats-cell">
+            <p>
+                ('Clos de Tart', 'France', 'Burgundy', 'Pinot Noir', 98.0, 319.0),
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
-
-
-    
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-
-    <script type="text/javascript" src="static/js/config.js"></script>
-
-    <script type="text/javascript" src="static/js/logic.js"></script>
-
-    <script type="text/javascript" src="../static/js/app.js"></script>
-    <script src="../static/js/d3.tip.js"></script>
-    <script src="../static/js/script.js"></script>
-
-
         <footer class="grid-x grid-padding-x grid-padding-y align-middle">
             <div class="cell large-12 text-center">
               <h3>Site Served with ❤️ by:</h3>
