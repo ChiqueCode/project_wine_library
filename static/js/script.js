@@ -1213,6 +1213,7 @@ var url = "/d3";
   const marginTop = 120;
 
   // legend svg
+  // TODO: Get rid of the legend 
   const legendRectSize = 18;
   const legendSpacing = 8;
 

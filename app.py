@@ -44,6 +44,10 @@ D3 = Base.classes.D3_table
 def index():
     return render_template("index.html")
 
+@app.route("/quality")    
+def quality():
+    return render_template("quality.html")
+
 # Route to the data
 @app.route("/data")
 def data_func():
