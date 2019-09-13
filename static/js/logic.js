@@ -33,7 +33,7 @@ d3.json("static/js/wine_polygon.json").then(function(data) {
     mode: "q",
     style: {
       // Border color
-      color: "#540e33",
+      color: "#420000",
       weight: 2,
       fillOpacity: 0.7
     },

@@ -1207,7 +1207,7 @@ var url = "/d3";
   //  .select("chart")
 
   // Constracting an SVG element
-  const width = 700;
+  const width = 800;
   const height = 500;
   const padding = 60;
   const marginTop = 120;
